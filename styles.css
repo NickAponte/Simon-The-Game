@@ -1,0 +1,47 @@
+.row{
+    display:flex;
+    justify-content: center;
+     border-style: none;
+}
+div{
+    border-style:solid;
+    min-width: 50px;
+    min-height: 50px;
+} */
+main {
+    /* background-color: blanchedalmond; */
+    width: 100vh;
+}
+h1,h3{
+    display: flex;
+    justify-content: center;
+}
+div{
+    background-color: blanchedalmond;
+}
+.row {
+    display: flex;
+    justify-content: center;
+     background-color: white;
+}
+
+#one{
+    background-color: yellow;
+}
+#two{
+    background-color: blue;
+}
+#three{
+    background-color: red;
+}
+#four{
+    background-color: green;
+}
+/* .cell {
+border: solid blue 2px;
+height: 5vh;
+width: 5vh;
+padding: 5vh;
+margin: 0;
+min-width: 5vh;
+} */
