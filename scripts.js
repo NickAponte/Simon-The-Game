@@ -1,10 +1,7 @@
 // Adds clickable events to each square 
 const cells = document.querySelectorAll('.cell');
 
-
-
-
-// create a function to randomly generate numbers in an array between 1 and 4, that also takes a .length parameter to determine how long the array should be 
+// Randomly generates 
 
 function generateRandomSequence(sequenceLength){
     let sequenceArray = []
@@ -43,10 +40,18 @@ let sequence = generateRandomSequence(5)
 // create a function that takes in the random sequence and flashes the correct boxes
 
 function flash(boxNum, timeToFade){
-document.getElementById(`${boxNum}`).innerHTML = "flash";
+    if(boxNum == 1){
+        boxNum = "one"
+    }else if (boxNum == 2){
+        boxNum = "two"
+    }else if (boxNum == 3){
+        boxNum = "three"
+    }else if (boxNum == 4){boxNum = "four"}
+    document.getElementById(`${boxNum}`).innerHTML = 'flash';
     setTimeout(function () {
 	    document.getElementById(`${boxNum}`).innerHTML = '';
     }, timeToFade);
+    // console.log("boxnum")
 }
 
 
@@ -54,6 +59,32 @@ document.getElementById(`${boxNum}`).innerHTML = "flash";
 
 
 // create a function that flashes a box for a certain timeframe parameters = the box to flash and the timeout 
+
+function flashSequence(sequence, time){
 for (let i = 0; i < sequence.length; i++) {
-    
+	task(i, sequence[i], 1000);
 }
+
+function task(i, sequence, time) {
+	setTimeout(function () {
+		flash(sequence,time)
+	}, 2000 * i);
+} 
+}
+
+flashSequence(sequence, 1000)
+
+
+// function sequenceFlash(sequence, time){
+// for (let i = 0; i < sequence.length; i++) {
+//     setTimeout(function () {
+// 			flash(sequence[i], time);
+// 		}, 1000);
+
+
+// }
+
+// }
+// setTimeout(function () {
+// 	flash(sequence[i], time);
+// }, 1000);
