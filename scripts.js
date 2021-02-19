@@ -1,7 +1,26 @@
-// Adds clickable events to each square 
+/////////////////////////////////////////////////////
+/////////////// Difficulty level ///////////////////
+////////////////////////////////////////////////////
+
+let difficulty = 5
+let sequence = generateRandomSequence(difficulty)
+
+////////////////////////////////////////////////////
+/////// Adds clickable events to each square ///////
+////////////////////////////////////////////////////
+
 const cells = document.querySelectorAll('.cell');
 
-// Randomly generates 
+cells.forEach((cell) => {
+    cell.addEventListener('click', (event) => {
+        event.preventDefault;
+        console.log(cell.getAttribute("data-number"));
+    });
+});
+
+//////////////////////////////////////////////////////
+///// Randomly generates  an array of numbers 1-4 ////
+/////////////////////////////////////////////////////
 
 function generateRandomSequence(sequenceLength){
     let sequenceArray = []
@@ -12,32 +31,9 @@ function generateRandomSequence(sequenceLength){
     return sequenceArray
 }
 
-cells.forEach((cell) => {
-    cell.addEventListener('click', (event) => {
-        event.preventDefault;
-        console.log(cell.getAttribute("data-number"));
-
-
-       
-
-
-
-
-
-
-
-        // if(cell.innerText == ''){
-        //     cell.innerText = 'Flash';
-        // }else{
-        //     cell.innerText = ''
-        // }
-        
-        
-    });
-});
-let difficulty = 5
-let sequence = generateRandomSequence(5)
-// create a function that takes in the random sequence and flashes the correct boxes
+/////////////////////////////////////////////////////////////
+/////// Takes a number and time and flashes that number /////
+////////////////////////////////////////////////////////////
 
 function flash(boxNum, timeToFade){
     if(boxNum == 1){
@@ -51,14 +47,12 @@ function flash(boxNum, timeToFade){
     setTimeout(function () {
 	    document.getElementById(`${boxNum}`).innerHTML = '';
     }, timeToFade);
-    // console.log("boxnum")
+    console.log("boxnum")
 }
 
-
-// flash("three",1000)
-
-
-// create a function that flashes a box for a certain timeframe parameters = the box to flash and the timeout 
+////////////////////////////////////////////////////////////////////////////////////////
+//////// Iterates over the sequence and flashes the correct squares, with timeout //////
+///////////////////////////////////////////////////////////////////////////////////////
 
 function flashSequence(sequence, time){
 for (let i = 0; i < sequence.length; i++) {
@@ -68,23 +62,9 @@ for (let i = 0; i < sequence.length; i++) {
 function task(i, sequence, time) {
 	setTimeout(function () {
 		flash(sequence,time)
-	}, 2000 * i);
+	}, 1500 * i);
 } 
 }
 
-flashSequence(sequence, 1000)
+flashSequence(sequence, 500)
 
-
-// function sequenceFlash(sequence, time){
-// for (let i = 0; i < sequence.length; i++) {
-//     setTimeout(function () {
-// 			flash(sequence[i], time);
-// 		}, 1000);
-
-
-// }
-
-// }
-// setTimeout(function () {
-// 	flash(sequence[i], time);
-// }, 1000);
