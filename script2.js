@@ -17,10 +17,14 @@ let playerSequence = [];
 let turn = 0
 
 
-function turnCounter(){
+function turnController(){
 turn += 1;
 
+removeClick()
 
+const newComputerSequence = [...computerSequence]
+newComputerSequence.push(generateNumber)
+// call round with this new array
 
 }
 
@@ -42,6 +46,11 @@ cells.forEach((cell) => {
 	});
 });
 
+function generateNumber() {
+	let sequenceArray = [];
+	return((Math.floor(Math.random() * 4) + 1)) 	
+}
+
 
 function removeClick() {
 	cell1.classList.add('removeClick');
@@ -49,4 +58,11 @@ function removeClick() {
 	cell3.classList.add('removeClick');
 	cell4.classList.add('removeClick');
 }
+function addClick() {
+	cell1.classList.remove('removeClick');
+	cell2.classList.remove('removeClick');
+	cell3.classList.remove('removeClick');
+	cell4.classList.remove('removeClick');
+}
+
 // console.log(playButton);
