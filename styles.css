@@ -1,41 +1,47 @@
-.row{
-    display:flex;
-    justify-content: center;
-     border-style: none;
+.row {
+	display: flex;
+	justify-content: center;
+	border-style: none;
 }
-div{
-    border-style:solid;
-    min-width: 50px;
-    min-height: 50px;
-} */
-main {
-    /* background-color: blanchedalmond; */
-    width: 100vh;
+div {
+	border-style: solid;
+	min-width: 50px;
+	min-height: 50px;
 }
-h1,h3{
-    display: flex;
-    justify-content: center;
+*/ main {
+	/* background-color: blanchedalmond; */
+	width: 100vh;
 }
-div{
-    background-color: blanchedalmond;
+h1,
+h3 {
+	display: flex;
+	justify-content: center;
+}
+div {
+	background-color: blanchedalmond;
 }
 .row {
-    display: flex;
-    justify-content: center;
-     background-color: white;
+	display: flex;
+	justify-content: center;
+	background-color: white;
 }
 
-#one{
-    background-color: yellow;
+#one {
+	background-color: yellow;
 }
-#two{
-    background-color: blue;
+#two {
+	background-color: blue;
 }
-#three{
-    background-color: red;
+#three {
+	background-color: red;
 }
-#four{
-    background-color: green;
+#four {
+	background-color: green;
+}
+
+.removeClick {
+	pointer-events: none;
+	
 }
 /* .cell {
 border: solid blue 2px;
