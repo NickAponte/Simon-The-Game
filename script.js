@@ -6,10 +6,6 @@
 // if matches, next step, else game over
 // css set pointer events to none, add the remove click class to the boxes
 
-
-
-
-
 // two major problems, flashes happen at once, and the game auto gameovers
 
 const cells = document.querySelectorAll('.cell');
@@ -23,28 +19,24 @@ let computerSequence = [];
 let playerSequence = [];
 let turn = 0;
 
-
-
 // GAME START
 function gameStart() {
 	console.log('gamestart');
 	playButton.classList.add('removeClick');
-	console.log("removed start button click")
+	console.log('removed start button click');
 	turnController();
 }
 
 // HANDLES TURN AND RUNS COMPUTER TURN
 function turnController() {
-	turn += 1;
-	
 	removeClick();
-	
+	turn += 1;
 	const newComputerSequence = [...computerSequence];
 	newComputerSequence.push(generateNumber());
 	// call round with this new array
 	flashSequence(newComputerSequence);
 	computerSequence = [...newComputerSequence];
-	
+
 	setTimeout(() => {
 		addClick();
 	}, turn * 1000); // turns on clicking
@@ -52,73 +44,95 @@ function turnController() {
 // takes sequence and flashes
 function flashSequence(sequence) {
 	console.log('starting flashsequence');
-// 	sequence.forEach((num) => {
-// 		 setInterval(() => {
-// 			flash(num);
-// 		 }, 6000);
-// 	});
-let index = 0;
-const flashBox = setInterval(()=>{
-	flash(sequence[index])
-index += 1
-if(index == sequence.length){
-	clearInterval(flashBox)
+	// 	sequence.forEach((num) => {
+	// 		 setInterval(() => {
+	// 			flash(num);
+	// 		 }, 6000);
+	// 	});
+	let index = 0;
+	const flashBox = setInterval(() => {
+		flash(sequence[index]);
+		index += 1;
+		if (index == sequence.length) {
+			clearInterval(flashBox);
+		}
+	}, 1000);
 }
-
-},1000)
-
- }
 // Flashes a single box
 
 function flash(boxNum) {
-	
-	
-		
-		console.log('flash');
-		if (boxNum == 1) {
-			boxNum = 'one';
-		} else if (boxNum == 2) {
-			boxNum = 'two';
-		} else if (boxNum == 3) {
-			boxNum = 'three';
-		} else if (boxNum == 4) {
-			boxNum = 'four';
-		}
-		
-		document.getElementById(`${boxNum}`).innerHTML = 'flash';
-		setTimeout(function () {
-			document.getElementById(`${boxNum}`).innerHTML = '';
-		}, 800); // timer for making flashes dissapear
-	
+	console.log('flash');
+	if (boxNum == 1) {
+		boxNum = 'one';
+	} else if (boxNum == 2) {
+		boxNum = 'two';
+	} else if (boxNum == 3) {
+		boxNum = 'three';
+	} else if (boxNum == 4) {
+		boxNum = 'four';
+	}
+
+	document.getElementById(`${boxNum}`).innerHTML = 'flash';
+	setTimeout(function () {
+		document.getElementById(`${boxNum}`).innerHTML = '';
+	}, 800); // timer for making flashes dissapear
+
 	// console.log('boxnum');
 }
+//check if win
+function checkWin() {
+	for (let i = 0; i < array.length; i++) {
+		const element = array[i];
+	}
+}
 
-
+function gameOver(){
+	// reset the variables for new game
+	// show leaderboard
+	computerSequence = []
+	playerSequence = []
+	console.log("Game over, play again")
+}
 // handes data from click
 function playerClick(cellNum) {
 	console.log('playerclick');
 	// const arrayLength = playerSequence.length - 1;
 	playerSequence.push(cellNum);
+if (
+	playerSequence[playerSequence.length - 1] !=
+	computerSequence[playerSequence.length - 1]
+){
 
-for (let i = 0; i < playerSequence.length; i++) {
-	if (playerSequence[i] != computerSequence[i]){
-		console.log('game over');
-		console.log(`player sequence = ${playerSequence}`)
-		console.log(`computer sequence = ${computerSequence}`)}
-		
-	else {
-		console.log("Else")
+	gameOver()
+	return;
+}
+	if (playerSequence.length == computerSequence.length) {
+		// reset player sequence for next round
 		playerSequence = [];
+		console.log('win round');
+		document.getElementByID("message").innerText = "Winner, Next round!"
+		
 		setTimeout(() => {
 			turnController();
-		}, 1000);
+		}, 800);
 		return;
 	}
-	
-	
-}
+	// for (let i = 0; i < playerSequence.length; i++) {
+	// 	if (playerSequence[turn] != computerSequence[turn]){
+	// 		console.log('game over');
+	// 		console.log(`player sequence = ${playerSequence}`)
+	// 		console.log(`computer sequence = ${computerSequence}`)}
 
+	// 	else {
+	// 		console.log("Else")
+	// 		playerSequence = [];
+	// 		setTimeout(() => {
+	// 			turnController();
+	// 		}, 1000);
+	// 		return;
+	// 	}
 
+	// }
 }
 //////// Event listener for clicks
 cells.forEach((cell) => {
@@ -127,10 +141,10 @@ cells.forEach((cell) => {
 		playerClick(cell.getAttribute('data-number'));
 	});
 });
-///// creates a new number 
+///// creates a new number
 function generateNumber() {
 	console.log('generatenum');
-	
+
 	return Math.floor(Math.random() * 4) + 1;
 }
 // removes clicking of boxes
@@ -151,7 +165,5 @@ function addClick() {
 	cell4.classList.remove('removeClick');
 	// console.log(cell4.classList);
 }
-
-
 
 // console.log(playButton);
