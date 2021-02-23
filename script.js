@@ -21,6 +21,41 @@ let computerSequence = [];
 let playerSequence = [];
 let turn = 0;
 
+// savefile functions
+
+var leaderBoard = {
+	
+};
+
+// Stores the JavaScript object as a string
+
+
+// Parses the saved string into a JavaScript object again
+// console.log(JSON.parse(localStorage.getItem('leaderBoard')))
+
+function addToLeaderboard(score){
+	const name = window.prompt('Enter your name: ');
+	console.log(name)
+	// leaderBoard[name] = `${score}`;
+	// localStorage.setItem('leaderBoard', JSON.stringify(leaderBoard));
+	localStorage.setItem(name,score)
+
+}
+function readLeaderBoard(){
+	console.log(localStorage);
+	// for(const key in localStorage){
+	// 	console.log(key,localStorage[key])
+	// }
+	Object.keys(localStorage).sort((a,b)=>{
+		return(localStorage.getItem(b)-localStorage.getItem(a)) // order in descending order
+	}).forEach((key,index) => {
+		console.log(key,localStorage.getItem(key),index) // allows ypu tp grab index
+	}) //
+}
+
+
+
+
 // GAME START
 function gameStart() {
 	console.log('gamestart');
@@ -98,7 +133,18 @@ function gameOver(){
 	message.innerText = 'Sorry, Game over!';
 	message.classList.add("red")
 	playButton.classList.remove('removeClick')
-	turn = 0;
+	
+	setTimeout(() => {
+		addToLeaderboard(turn)
+		console.log(turn)
+		
+	}, 300);
+	setTimeout(() => {
+		readLeaderBoard()
+		turn = 0;
+	}, 1000);
+	
+	// call leaderboard add
 }
 // handes data from click
 function playerClick(cellNum) {
