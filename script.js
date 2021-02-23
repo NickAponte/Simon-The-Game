@@ -14,6 +14,8 @@ const cell1 = document.querySelector('#one');
 const cell2 = document.querySelector('#two');
 const cell3 = document.querySelector('#three');
 const cell4 = document.querySelector('#four');
+const message = document.getElementById('message');
+const score = document.getElementById('score')
 playButton.addEventListener('click', gameStart);
 let computerSequence = [];
 let playerSequence = [];
@@ -24,13 +26,17 @@ function gameStart() {
 	console.log('gamestart');
 	playButton.classList.add('removeClick');
 	console.log('removed start button click');
+	message.classList.remove('red');
 	turnController();
 }
 
 // HANDLES TURN AND RUNS COMPUTER TURN
 function turnController() {
+	message.innerText = 'Watch carefully!';
 	removeClick();
 	turn += 1;
+	score.innerText = turn -1
+
 	const newComputerSequence = [...computerSequence];
 	newComputerSequence.push(generateNumber());
 	// call round with this new array
@@ -38,8 +44,9 @@ function turnController() {
 	computerSequence = [...newComputerSequence];
 
 	setTimeout(() => {
+		message.innerText = 'Your turn!';
 		addClick();
-	}, turn * 1000); // turns on clicking
+	}, turn * 1400); // turns on clicking
 }
 // takes sequence and flashes
 function flashSequence(sequence) {
@@ -72,19 +79,15 @@ function flash(boxNum) {
 		boxNum = 'four';
 	}
 
-	document.getElementById(`${boxNum}`).innerHTML = 'flash';
+	// document.getElementById(`${boxNum}`).innerHTML = 'flash';
+	 document.getElementById(`${boxNum}`).classList.add("glow")
 	setTimeout(function () {
-		document.getElementById(`${boxNum}`).innerHTML = '';
+		document.getElementById(`${boxNum}`).classList.remove('glow');
 	}, 800); // timer for making flashes dissapear
 
 	// console.log('boxnum');
 }
-//check if win
-function checkWin() {
-	for (let i = 0; i < array.length; i++) {
-		const element = array[i];
-	}
-}
+
 
 function gameOver(){
 	// reset the variables for new game
@@ -92,6 +95,10 @@ function gameOver(){
 	computerSequence = []
 	playerSequence = []
 	console.log("Game over, play again")
+	message.innerText = 'Sorry, Game over!';
+	message.classList.add("red")
+	playButton.classList.remove('removeClick')
+	turn = 0;
 }
 // handes data from click
 function playerClick(cellNum) {
@@ -104,41 +111,34 @@ if (
 ){
 
 	gameOver()
+	playButton.innerText = "Play again?"
 	return;
 }
 	if (playerSequence.length == computerSequence.length) {
 		// reset player sequence for next round
 		playerSequence = [];
 		console.log('win round');
-		document.getElementByID("message").innerText = "Winner, Next round!"
+		message.innerText = "Winner, Next round!"
 		
 		setTimeout(() => {
+			message.innerText = 'Watch the sequence!';
 			turnController();
-		}, 800);
+		}, 1300);
 		return;
 	}
-	// for (let i = 0; i < playerSequence.length; i++) {
-	// 	if (playerSequence[turn] != computerSequence[turn]){
-	// 		console.log('game over');
-	// 		console.log(`player sequence = ${playerSequence}`)
-	// 		console.log(`computer sequence = ${computerSequence}`)}
-
-	// 	else {
-	// 		console.log("Else")
-	// 		playerSequence = [];
-	// 		setTimeout(() => {
-	// 			turnController();
-	// 		}, 1000);
-	// 		return;
-	// 	}
-
-	// }
+	
 }
 //////// Event listener for clicks
 cells.forEach((cell) => {
 	cell.addEventListener('click', (event) => {
 		console.log('clicked');
 		playerClick(cell.getAttribute('data-number'));
+		theID = cell.getAttribute('id')
+		document.getElementById(theID).classList.add('glow')
+		setTimeout(() => {
+		document.getElementById(theID).classList.remove('glow');
+	},  400); 
+
 	});
 });
 ///// creates a new number

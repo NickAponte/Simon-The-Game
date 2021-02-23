@@ -5,6 +5,8 @@
 }
 div {
 	border-style: solid;
+	border-radius: 20pc;
+	border-width: 5px;
 	min-width: 50px;
 	min-height: 50px;
 }
@@ -24,6 +26,7 @@ div {
 	display: flex;
 	justify-content: center;
 	background-color: white;
+	background-color: grey;
 }
 
 #one {
@@ -47,11 +50,22 @@ div {
 	display: flex;
 	justify-content: center;
 }
-/* .cell {
-border: solid blue 2px;
-height: 5vh;
-width: 5vh;
-padding: 5vh;
-margin: 0;
-min-width: 5vh;
-} */
+.red{
+	color: red;
+}
+.glow {
+  
+  color: white;
+  
+  
+}
+#score{
+	border-radius: none;
+	display: flex;
+	justify-content: center;
+	width: 1px;
+	height: 1px;
+}
+body{
+	background-color: grey;
+}
