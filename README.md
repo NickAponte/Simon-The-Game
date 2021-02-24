@@ -1,6 +1,6 @@
 # Simon-The-Game
 
-A Recreation of Simon, the popular memory game!
+A Recreation of Simon, the popular memory game! Play it here! https://nickaponte.github.io/Simon-The-Game/
 
 ## The Game
 
