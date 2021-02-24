@@ -73,5 +73,5 @@ CSS was my other major issue, as i'm not particularly creative when it comes to 
 ## Future Changes
 # ---------------------
 
-I plan on coming back to this and updating the css to make it scale better for mobile users, It works decently well as is and would require minor edits
+I plan on coming back to this and updating the css to make it scale better for mobile users, It works decently well as is and would require minor edits. I would also like to change the local leaderboard storage to a hosted database. 
 
