@@ -69,3 +69,9 @@ The leaderboard is saved to local storage in the browser, and will persist as lo
 Coming from languages like C++ and Java, the main hurdle I faced came from the way javascript loads and runs all functions instantly. Figuring out the logic and Learning how to make the function wait using setTimeout and settimeInterval was my main challenge. 
 
 CSS was my other major issue, as i'm not particularly creative when it comes to design work. 
+
+## Future Changes
+# ---------------------
+
+I plan on coming back to this and updating the css to make it scale better for mobile users, It works decently well as is and would require minor edits
+
