@@ -4,7 +4,7 @@ A Recreation of Simon, the popular memory game! Play it [here!](https://nickapon
 
 ![image](https://media.git.generalassemb.ly/user/34059/files/22332c00-76b1-11eb-9ee0-88de3a2c65d3)
 
-# ---------
+
 ## The Game
 # ---------
 
@@ -18,13 +18,13 @@ A Recreation of Simon, the popular memory game! Play it [here!](https://nickapon
 
 *Can you find the hidden celebrity?*
 
-# -------------
+
 ## Technologies
 # -------------
 
 Javascript, CSS(some bootstrap), HTML.
 
-# ---------
+
 ## Features
 # ---------
 
@@ -34,7 +34,7 @@ After you lose, record your name to be added to your local Leaderboard, Challeng
 
 *or be like me, and hardcode yourself into the Leaderboards*
 
-# -------------
+
 ## User Stories
 # -------------
 
@@ -50,7 +50,7 @@ After you lose, record your name to be added to your local Leaderboard, Challeng
 
 -As a player I want a scoreboard/leaderboard
 
-# -------------
+
 ## Installation
 # -------------
 
@@ -58,13 +58,12 @@ Simply fork and clone the repo, and run it in your local browser.
 
 The leaderboard is saved to local storage in the browser, and will persist as long as the local storage is not cleared
 
-# -----------
 ## WireFrames
 # -----------
 
 ![image](https://media.git.generalassemb.ly/user/34059/files/6d9b0980-76b4-11eb-9d2e-8c0281f731e6)
 
-# -------------------
+
 ## Hurdles/challenges
 # -------------------
 
