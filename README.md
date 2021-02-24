@@ -18,6 +18,7 @@ A Recreation of Simon, the popular memory game! Play it [here!](https://nickapon
 
 *Can you find the hidden celebrity?*
 
+# ------------------------
 
 ## Technologies
 
@@ -54,6 +55,12 @@ After you lose, record your name to be added to your local Leaderboard, Challeng
 Simply fork and clone the repo, and run it in your local browser.
 
 The leaderboard is saved to local storage in the browser, and will persist as long as the local storage is not cleared
+
+# ------------------------
+
+## WireFrames
+
+![image](https://media.git.generalassemb.ly/user/34059/files/6d9b0980-76b4-11eb-9d2e-8c0281f731e6)
 
 # ------------------------
 
