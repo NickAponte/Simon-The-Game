@@ -11,8 +11,11 @@
     <link rel="stylesheet" href="styles.css">
     <audio src="sounds/button-31.wav" data-sound="circle_1"></audio>
     <audio src="sounds/button-32.wav" data-sound="circle_2"></audio>
-    <audio src="sounds/button-33a.wav" data-sound="circle_3"></audio>
+    <audio src="sounds/button-33a.wav" 
+    data-sound="circle_3"></audio>
     <audio src="sounds/button-34.wav" data-sound="circle_4"></audio>
+    <audio src="sounds/fail-trombone-01.wav" data-sound="lost"></audio>
+    
 </head>
 
 <body>
@@ -20,7 +23,7 @@
         <h1 class="removeClick"><strong>Simon</strong></h1>
         <h3>Test Your Memory!</h3>
         <button id="play" class="btn btn-success">Play</button>
-        <button id="toggleLeaderBoardButton" class="btn btn-info" onclick="toggleLeaderBoard()">Show
+        <button id="toggleLeaderBoardButton" class="btn btn-info">Show
             Leaderboard</button><br><br>
     </header>
     <main>
@@ -41,7 +44,7 @@
 </body>
 <footer>
     <div id="message"></div><br><br>
-    <div id="leaderBoardDiv">Show Leaderboard</div>
+    <div class = "hide" id="leaderBoardDiv">Show Leaderboard</div>
     <script src="script.js"></script>
 </footer>
 

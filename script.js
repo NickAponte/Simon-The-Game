@@ -7,8 +7,11 @@ let playerSequence = [];
 let turn = 0;
 localStorage.setItem('Nick', '9999999'); // totally fair
 let leaderBoard = {};
-
+const leaderBoardDiv = document.getElementById('leaderBoardDiv');
+let btn = document.getElementById('toggleLeaderBoardButton');
 populateLeaderboard();
+btn.addEventListener("click",toggleLeaderBoard)
+
 // Populates the leaderboard div with the names and scores in localmemory
 
 function populateLeaderboard() {
@@ -58,6 +61,8 @@ function turnController() {
 		addClick();
 	}, turn * 1400); // turns on clicking
 }
+
+
 // takes sequence and flashes
 function flashSequence(sequence) {
 	console.log('starting flashsequence');
@@ -83,58 +88,64 @@ function flash(boxNum) {
 	}, 800);
 }
 
+/////////////////////////////////////////////////////////////////////////////
+// Handles gameover message, grabs player name/ resets values for new game //
+////////////////////////////////////////////////////////////////////////////
+
 function gameOver() {
-	// reset the variables for new game
-	// show leaderboard
+	
 	computerSequence = [];
 	playerSequence = [];
 	console.log('Game over, play again');
+	theID = "lost"
+	
+	const sound = document.querySelector(`[data-sound='${theID}']`);
+	
 	message.innerText = 'Sorry, Game over!';
-	//console.log("Before: " + message.classList);
+	
 	message.classList.add('red');
 	message.style.color = 'red';
-	//console.log("After: " + message.classList);
+	
 	if (turn < 3 ) {
 		document.getElementById('simon').style.display = 'block';
 	}
 	playButton.classList.remove('removeClick');
-
+	sound.play();
 	setTimeout(() => {
+		sound.play();
 		let name = window.prompt('Enter your name: ');
 		addToLocalStorage(name, turn - 1);
 		populateLeaderboard();
 	}, 300);
 
-	// call leaderboard add
+
+//////////////////////////////////////////
+// Saves key to local sorage in browser //
+/////////////////////////////////////////
 }
 function addToLocalStorage(key, newValue) {
-	//console.log("Adding to local storage: " + key + ":" + newValue);
-
 	if (!key || key.trim() == '') key = 'Anonymous';
-
 	let value = localStorage[key];
 	if (!value || (value && newValue > value)) {
 		localStorage.setItem(key, newValue);
 	}
 }
-
+/////////////////////////////
+// Shows/Hides leaderboard //
+/////////////////////////////
 
 function toggleLeaderBoard() {
-	let btn = document.getElementById('toggleLeaderBoardButton');
-	if (btn.innerHTML == 'Show Leaderboard') {
+	
+	if (leaderBoardDiv.classList.contains('hide')) {
 		btn.innerHTML = 'Hide Leaderboard';
-		document.getElementById('leaderBoardDiv').style.display = 'block';
 	} else {
 		btn.innerHTML = 'Show Leaderboard';
-		document.getElementById('leaderBoardDiv').style.display = 'none';
 	}
+	leaderBoardDiv.classList.toggle('hide');
 }
 
 // handes data from click
 function playerClick(cellNum) {
-
-	console.log('playerclick');
-	// const arrayLength = playerSequence.length - 1;
 	playerSequence.push(cellNum);
 	if (
 		playerSequence[playerSequence.length - 1] !=
@@ -147,9 +158,7 @@ function playerClick(cellNum) {
 	if (playerSequence.length == computerSequence.length) {
 		// reset player sequence for next round
 		playerSequence = [];
-		console.log('win round');
 		message.innerText = 'Winner, Next round!';
-
 		setTimeout(() => {
 			message.innerText = 'Watch the sequence!';
 			turnController();
@@ -157,7 +166,10 @@ function playerClick(cellNum) {
 		return;
 	}
 }
-//////// Event listener for clicks
+///////////////////////////////
+// Event listener for clicks //
+///////////////////////////////
+
 cells.forEach((cell) => {
 	cell.addEventListener('click', (event) => {
 		console.log('clicked');
@@ -171,32 +183,40 @@ cells.forEach((cell) => {
 		}, 400);
 	});
 });
-///// creates a new number
+
+///////////////////////////
+// creates a new number ///
+///////////////////////////
+
 function generateNumber() {
 	console.log('generatenum');
 
 	return Math.floor(Math.random() * 4) + 1;
 }
-// removes clicking of boxes
+
+
+///////////////////////////////
+// removes clicking of boxes //
+///////////////////////////////
+
 function removeClick() {
 	console.log('removeclick');
 
 	let allCells = document.getElementsByClassName('cell');
-	//console.log("allCells.length=" + allCells.length);
 	for (let i = 0; i < allCells.length; i++) {
 		cells[i].classList.add('removeClick');
 	}
 
-	// console.log(cell4.classList);
+	
 }
-// allows clicking of boxes
+//////////////////////////////
+// allows clicking of boxes //
+//////////////////////////////
+
 function addClick() {
 	console.log('addclick');
 	let allCells = document.getElementsByClassName('cell');
-	//console.log("allCells.length=" + allCells.length);
 	for (let i = 0; i < allCells.length; i++) {
 		cells[i].classList.remove('removeClick');
 	}
 }
-
-// console.log(playButton);

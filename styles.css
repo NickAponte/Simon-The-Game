@@ -44,8 +44,8 @@ main {
 	pointer-events: none;
 }
 #message{
-    width: 20%;
-    height: 50px;
+    width: 25%;
+    height: 80px;
     background-color: white;
     margin: auto;
     text-align: center;
@@ -54,6 +54,8 @@ main {
     color: white;
     /* border-radius: 50%; */
     background-color: rgba(82, 48, 204, 0.61);
+    padding-left: 5%;
+    padding-right: 5%;
 }
 .red{
 	color: red;
@@ -78,7 +80,7 @@ button {
     margin-left: 5px;
 }
 #leaderBoardDiv {
-    display:none; 
+    
     background-color:rgb(245, 225, 241); 
     border-radius: 10%;
     width:300px; 
@@ -95,4 +97,7 @@ button {
 }
 img{
 	display: none
+}
+.hide{
+    display: none
 }
