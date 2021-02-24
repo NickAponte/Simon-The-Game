@@ -1,0 +1,103 @@
+body {
+    background-color: grey;
+}
+header {
+    text-align: center;
+}
+header > h1 {
+    font-size: 45pt;
+    font-family: Copperplate, "Copperplate Gothic Light", fantasy;
+    color: white;
+}
+header > h3 {
+    font-size: 28pt;
+    font-family: Copperplate, "Copperplate Gothic Light", fantasy;
+}
+main {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.game-button-container > div {
+    margin: 5px;
+}
+.game-container {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: black;
+    padding-top: 40px;
+    margin-bottom: 30px;
+}
+
+.circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 30%;
+}
+
+
+.removeClick {
+	pointer-events: none;
+}
+#message{
+    width: 25%;
+    height: 80px;
+    background-color: white;
+    margin: auto;
+    text-align: center;
+    padding-top: 8px;
+    font-size: 18pt;
+    color: white;
+    /* border-radius: 50%; */
+    background-color: rgba(82, 48, 204, 0.61);
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.red{
+	color: red;
+}
+.glow {
+  border-color: lightgray;
+  border-style: solid;
+  border-width: 8px;
+}
+#score{
+	border-radius: none;
+	display: flex;
+	justify-content: center;
+	width: 50px;
+	height: 50px;
+    /* background-color:rgba(82, 48, 204, 0.61); */
+    color: white;
+    margin-left: -50px;
+}
+button {
+    width: 200px;
+    margin-left: 5px;
+}
+#leaderBoardDiv {
+    
+    background-color:rgb(245, 225, 241); 
+    border-radius: 10%;
+    width:300px; 
+    height:50%; 
+    margin:10px; 
+    padding:10px;
+    margin: auto;
+    text-align: center;
+}
+#leaderBoardDiv > li {
+    list-style-type: none;
+    font-weight:bold;
+    font-size: 14pt;
+}
+img{
+	display: none
+}
+.hide{
+    display: none
+}
