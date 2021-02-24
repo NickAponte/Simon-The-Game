@@ -1,69 +1,34 @@
-// a computer array and a player array
-// step 1, computer generates 1 random number, push to computer array
-// step 2, allow clicking,
-// step 3 push users clicked # onto user array
-//step compare the current indexes ()
-// if matches, next step, else game over
-// css set pointer events to none, add the remove click class to the boxes
-
-// two major problems, flashes happen at once, and the game auto gameovers
-
 const cells = document.querySelectorAll('.cell');
 const playButton = document.getElementById('play');
 const message = document.getElementById('message');
 const score = document.getElementById('score');
-playButton.addEventListener('click', gameStart);
 let computerSequence = [];
 let playerSequence = [];
 let turn = 0;
-
-// savefile functions
-
+localStorage.setItem('Nick', '9999999'); // totally fair
 let leaderBoard = {};
 
 populateLeaderboard();
-
-// Stores the JavaScript object as a string
-
-// Parses the saved string into a JavaScript object again
-// console.log(JSON.parse(localStorage.getItem('leaderBoard')))
-
-function addToLocalStorage(key, newValue) {
-	//console.log("Adding to local storage: " + key + ":" + newValue);
-	if (!key || key.trim() == '') key = 'Anonymous';
-
-	let value = localStorage[key];
-	if (!value || (value && newValue > value)) {
-		localStorage.setItem(key, newValue);
-	}
-}
+// Populates the leaderboard div with the names and scores in localmemory
 
 function populateLeaderboard() {
 	document.getElementById('leaderBoardDiv').innerHTML = '';
-
 	Object.keys(localStorage)
 		.sort((a, b) => {
-			return localStorage.getItem(b) - localStorage.getItem(a); // order in descending order
+			return localStorage.getItem(b) - localStorage.getItem(a); 
 		})
 		.forEach((key, index) => {
-			console.log(key, localStorage.getItem(key)); // allows you to grab index
+			console.log(key, localStorage.getItem(key)); // 
 			document.getElementById('leaderBoardDiv').innerHTML +=
 				'<li>' + key + ': ' + localStorage.getItem(key) + '</li>';
 		});
-} //function populateLeaderboard
+} 
+/////////////////
+// GAME START //
+///////////////
 
-function toggleLeaderBoard() {
-	let btn = document.getElementById('toggleLeaderBoardButton');
-	if (btn.innerHTML == 'Show Leaderboard') {
-		btn.innerHTML = 'Hide Leaderboard';
-		document.getElementById('leaderBoardDiv').style.display = 'block';
-	} else {
-		btn.innerHTML = 'Show Leaderboard';
-		document.getElementById('leaderBoardDiv').style.display = 'none';
-	}
-}
+playButton.addEventListener('click', gameStart);
 
-// GAME START
 function gameStart() {
 	turn = 0;
 	document.getElementById('simon').style.display = 'none';
@@ -106,19 +71,16 @@ function flashSequence(sequence) {
 		}
 	}, 1000);
 }
-// Flashes a single box
-
 function flash(boxNum) {
 	console.log('flash');
 	let boxId = 'circle_' + boxNum;
+	const beep = document.querySelector(`[data-sound='${boxId}']`);
+	beep.play();
 
-	// document.getElementById(`${boxId}`).innerHTML = 'flash';
 	document.getElementById(boxId).classList.add('glow');
 	setTimeout(function () {
 		document.getElementById(boxId).classList.remove('glow');
-	}, 800); // timer for making flashes dissapear
-
-	// console.log('boxnum');
+	}, 800);
 }
 
 function gameOver() {
@@ -132,8 +94,8 @@ function gameOver() {
 	message.classList.add('red');
 	message.style.color = 'red';
 	//console.log("After: " + message.classList);
-	if(turn < 3){
-		document.getElementById("simon").style.display ="block"
+	if (turn < 3 ) {
+		document.getElementById('simon').style.display = 'block';
 	}
 	playButton.classList.remove('removeClick');
 
@@ -145,8 +107,32 @@ function gameOver() {
 
 	// call leaderboard add
 }
+function addToLocalStorage(key, newValue) {
+	//console.log("Adding to local storage: " + key + ":" + newValue);
+
+	if (!key || key.trim() == '') key = 'Anonymous';
+
+	let value = localStorage[key];
+	if (!value || (value && newValue > value)) {
+		localStorage.setItem(key, newValue);
+	}
+}
+
+
+function toggleLeaderBoard() {
+	let btn = document.getElementById('toggleLeaderBoardButton');
+	if (btn.innerHTML == 'Show Leaderboard') {
+		btn.innerHTML = 'Hide Leaderboard';
+		document.getElementById('leaderBoardDiv').style.display = 'block';
+	} else {
+		btn.innerHTML = 'Show Leaderboard';
+		document.getElementById('leaderBoardDiv').style.display = 'none';
+	}
+}
+
 // handes data from click
 function playerClick(cellNum) {
+
 	console.log('playerclick');
 	// const arrayLength = playerSequence.length - 1;
 	playerSequence.push(cellNum);
@@ -178,6 +164,8 @@ cells.forEach((cell) => {
 		playerClick(cell.getAttribute('data-number'));
 		theID = cell.getAttribute('id');
 		document.getElementById(theID).classList.add('glow');
+		const beep = document.querySelector(`[data-sound='${theID}']`);
+		beep.play()
 		setTimeout(() => {
 			document.getElementById(theID).classList.remove('glow');
 		}, 400);
