@@ -65,6 +65,8 @@ function toggleLeaderBoard() {
 
 // GAME START
 function gameStart() {
+	turn = 0;
+	document.getElementById('simon').style.display = 'none';
 	console.log('gamestart');
 	playButton.classList.add('removeClick');
 	console.log('removed start button click');
@@ -130,6 +132,9 @@ function gameOver() {
 	message.classList.add('red');
 	message.style.color = 'red';
 	//console.log("After: " + message.classList);
+	if(turn < 3){
+		document.getElementById("simon").style.display ="block"
+	}
 	playButton.classList.remove('removeClick');
 
 	setTimeout(() => {

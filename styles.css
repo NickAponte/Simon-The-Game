@@ -44,7 +44,7 @@ main {
 	pointer-events: none;
 }
 #message{
-    width: 30%;
+    width: 20%;
     height: 50px;
     background-color: white;
     margin: auto;
@@ -52,14 +52,14 @@ main {
     padding-top: 8px;
     font-size: 18pt;
     color: white;
-    border-radius: 40%;
+    /* border-radius: 50%; */
     background-color: rgba(82, 48, 204, 0.61);
 }
 .red{
 	color: red;
 }
 .glow {
-  border-color: white;
+  border-color: lightgray;
   border-style: solid;
   border-width: 8px;
 }
@@ -92,4 +92,7 @@ button {
     list-style-type: none;
     font-weight:bold;
     font-size: 14pt;
+}
+img{
+	display: none
 }
