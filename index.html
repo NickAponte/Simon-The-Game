@@ -1,38 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simon</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <main>
-        <h1 class = "removeClick">Simon</h1>
+    <header>
+        <h1 class="removeClick"><strong>Simon</strong></h1>
         <h3>Test Your Memory!</h3>
-       
-        <div class="row">
-            <div id = "one" class='cell' data-number='1'></div>
-            <div id = "two" class='cell' data-number='2'></div>
-           
+        <button id="play" class="btn btn-success">Play</button>
+        <button id="toggleLeaderBoardButton" class="btn btn-info" onclick="toggleLeaderBoard()">Show
+            Leaderboard</button><br><br>
+    </header>
+    <main>
+        <div class="game-container">
+            <div class="game-button-container">
+                <div id="circle_1" class="cell circle" style="background-color:yellow" data-number='1'></div>
+                <div id="circle_2" class="cell circle" style="background-color:red" data-number='2'></div>
+            </div>
+            <div class="game-button-container">
+                <div id="circle_3" class="cell circle" style="background-color:green" data-number='3'></div>
+                <div id="circle_4" class="cell circle" style="background-color:blue" data-number='4'></div>
+            </div>
         </div>
-        
-        <div class="row">
-            <div id = "three" class='cell' data-number='3'></div>
-            <div id = "four" class='cell' data-number='4'></div>
-        </div>
-        
-        <div id = "score"style = "border-radius: 0%"></div>
+        <div id="score">Score<br></div>
     </main>
-    
-    <!-- <script src="scripts.js"></script> -->
+
 </body>
 <footer>
-    
-    <button id = 'play'>Play</button>
-    
-    <div id = "message"></div>
-    
+    <div id="message"></div><br><br>
+    <div id="leaderBoardDiv"></div>
     <script src="script.js"></script>
 </footer>
+
 </html>

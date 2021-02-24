@@ -1,71 +1,95 @@
-.row {
-	display: flex;
-	justify-content: center;
-	border-style: none;
+body {
+    background-color: grey;
 }
-div {
-	border-style: solid;
-	border-radius: 20pc;
-	border-width: 5px;
-	min-width: 50px;
-	min-height: 50px;
+header {
+    text-align: center;
 }
-*/ main {
-	/* background-color: blanchedalmond; */
-	width: 100vh;
+header > h1 {
+    font-size: 45pt;
+    font-family: Copperplate, "Copperplate Gothic Light", fantasy;
+    color: white;
 }
-h1,
-h3 {
-	display: flex;
-	justify-content: center;
+header > h3 {
+    font-size: 28pt;
+    font-family: Copperplate, "Copperplate Gothic Light", fantasy;
 }
-div {
-	background-color: blanchedalmond;
+main {
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
-.row {
-	display: flex;
-	justify-content: center;
-	background-color: white;
-	background-color: grey;
+.game-button-container > div {
+    margin: 5px;
+}
+.game-container {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: black;
+    padding-top: 40px;
+    margin-bottom: 30px;
 }
 
-#one {
-	background-color: yellow;
+.circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 30%;
 }
-#two {
-	background-color: blue;
-}
-#three {
-	background-color: red;
-}
-#four {
-	background-color: green;
-}
+
 
 .removeClick {
 	pointer-events: none;
-	
 }
 #message{
-	display: flex;
-	justify-content: center;
+    width: 30%;
+    height: 50px;
+    background-color: white;
+    margin: auto;
+    text-align: center;
+    padding-top: 8px;
+    font-size: 18pt;
+    color: white;
+    border-radius: 40%;
+    background-color: rgba(82, 48, 204, 0.61);
 }
 .red{
 	color: red;
 }
 .glow {
-  
-  color: white;
-  
-  
+  border-color: white;
+  border-style: solid;
+  border-width: 8px;
 }
 #score{
 	border-radius: none;
 	display: flex;
 	justify-content: center;
-	width: 1px;
-	height: 1px;
+	width: 50px;
+	height: 50px;
+    /* background-color:rgba(82, 48, 204, 0.61); */
+    color: white;
+    margin-left: -50px;
 }
-body{
-	background-color: grey;
+button {
+    width: 200px;
+    margin-left: 5px;
+}
+#leaderBoardDiv {
+    display:none; 
+    background-color:rgb(245, 225, 241); 
+    border-radius: 10%;
+    width:300px; 
+    height:50%; 
+    margin:10px; 
+    padding:10px;
+    margin: auto;
+    text-align: center;
+}
+#leaderBoardDiv > li {
+    list-style-type: none;
+    font-weight:bold;
+    font-size: 14pt;
 }

@@ -10,12 +10,8 @@
 
 const cells = document.querySelectorAll('.cell');
 const playButton = document.getElementById('play');
-const cell1 = document.querySelector('#one');
-const cell2 = document.querySelector('#two');
-const cell3 = document.querySelector('#three');
-const cell4 = document.querySelector('#four');
 const message = document.getElementById('message');
-const score = document.getElementById('score')
+const score = document.getElementById('score');
 playButton.addEventListener('click', gameStart);
 let computerSequence = [];
 let playerSequence = [];
@@ -23,38 +19,49 @@ let turn = 0;
 
 // savefile functions
 
-var leaderBoard = {
-	
-};
+let leaderBoard = {};
+
+populateLeaderboard();
 
 // Stores the JavaScript object as a string
-
 
 // Parses the saved string into a JavaScript object again
 // console.log(JSON.parse(localStorage.getItem('leaderBoard')))
 
-function addToLeaderboard(score){
-	const name = window.prompt('Enter your name: ');
-	console.log(name)
-	// leaderBoard[name] = `${score}`;
-	// localStorage.setItem('leaderBoard', JSON.stringify(leaderBoard));
-	localStorage.setItem(name,score)
+function addToLocalStorage(key, newValue) {
+	//console.log("Adding to local storage: " + key + ":" + newValue);
+	if (!key || key.trim() == '') key = 'Anonymous';
 
-}
-function readLeaderBoard(){
-	console.log(localStorage);
-	// for(const key in localStorage){
-	// 	console.log(key,localStorage[key])
-	// }
-	Object.keys(localStorage).sort((a,b)=>{
-		return(localStorage.getItem(b)-localStorage.getItem(a)) // order in descending order
-	}).forEach((key,index) => {
-		console.log(key,localStorage.getItem(key),index) // allows ypu tp grab index
-	}) //
+	let value = localStorage[key];
+	if (!value || (value && newValue > value)) {
+		localStorage.setItem(key, newValue);
+	}
 }
 
+function populateLeaderboard() {
+	document.getElementById('leaderBoardDiv').innerHTML = '';
 
+	Object.keys(localStorage)
+		.sort((a, b) => {
+			return localStorage.getItem(b) - localStorage.getItem(a); // order in descending order
+		})
+		.forEach((key, index) => {
+			console.log(key, localStorage.getItem(key)); // allows you to grab index
+			document.getElementById('leaderBoardDiv').innerHTML +=
+				'<li>' + key + ': ' + localStorage.getItem(key) + '</li>';
+		});
+} //function populateLeaderboard
 
+function toggleLeaderBoard() {
+	let btn = document.getElementById('toggleLeaderBoardButton');
+	if (btn.innerHTML == 'Show Leaderboard') {
+		btn.innerHTML = 'Hide Leaderboard';
+		document.getElementById('leaderBoardDiv').style.display = 'block';
+	} else {
+		btn.innerHTML = 'Show Leaderboard';
+		document.getElementById('leaderBoardDiv').style.display = 'none';
+	}
+}
 
 // GAME START
 function gameStart() {
@@ -62,6 +69,7 @@ function gameStart() {
 	playButton.classList.add('removeClick');
 	console.log('removed start button click');
 	message.classList.remove('red');
+	message.style.color = 'white';
 	turnController();
 }
 
@@ -70,7 +78,7 @@ function turnController() {
 	message.innerText = 'Watch carefully!';
 	removeClick();
 	turn += 1;
-	score.innerText = turn -1
+	score.innerText = `Score:  ${turn - 1}`;
 
 	const newComputerSequence = [...computerSequence];
 	newComputerSequence.push(generateNumber());
@@ -86,11 +94,7 @@ function turnController() {
 // takes sequence and flashes
 function flashSequence(sequence) {
 	console.log('starting flashsequence');
-	// 	sequence.forEach((num) => {
-	// 		 setInterval(() => {
-	// 			flash(num);
-	// 		 }, 6000);
-	// 	});
+
 	let index = 0;
 	const flashBox = setInterval(() => {
 		flash(sequence[index]);
@@ -104,46 +108,36 @@ function flashSequence(sequence) {
 
 function flash(boxNum) {
 	console.log('flash');
-	if (boxNum == 1) {
-		boxNum = 'one';
-	} else if (boxNum == 2) {
-		boxNum = 'two';
-	} else if (boxNum == 3) {
-		boxNum = 'three';
-	} else if (boxNum == 4) {
-		boxNum = 'four';
-	}
+	let boxId = 'circle_' + boxNum;
 
-	// document.getElementById(`${boxNum}`).innerHTML = 'flash';
-	 document.getElementById(`${boxNum}`).classList.add("glow")
+	// document.getElementById(`${boxId}`).innerHTML = 'flash';
+	document.getElementById(boxId).classList.add('glow');
 	setTimeout(function () {
-		document.getElementById(`${boxNum}`).classList.remove('glow');
+		document.getElementById(boxId).classList.remove('glow');
 	}, 800); // timer for making flashes dissapear
 
 	// console.log('boxnum');
 }
 
-
-function gameOver(){
+function gameOver() {
 	// reset the variables for new game
 	// show leaderboard
-	computerSequence = []
-	playerSequence = []
-	console.log("Game over, play again")
+	computerSequence = [];
+	playerSequence = [];
+	console.log('Game over, play again');
 	message.innerText = 'Sorry, Game over!';
-	message.classList.add("red")
-	playButton.classList.remove('removeClick')
-	
+	//console.log("Before: " + message.classList);
+	message.classList.add('red');
+	message.style.color = 'red';
+	//console.log("After: " + message.classList);
+	playButton.classList.remove('removeClick');
+
 	setTimeout(() => {
-		addToLeaderboard(turn)
-		console.log(turn)
-		
+		let name = window.prompt('Enter your name: ');
+		addToLocalStorage(name, turn - 1);
+		populateLeaderboard();
 	}, 300);
-	setTimeout(() => {
-		readLeaderBoard()
-		turn = 0;
-	}, 1000);
-	
+
 	// call leaderboard add
 }
 // handes data from click
@@ -151,40 +145,37 @@ function playerClick(cellNum) {
 	console.log('playerclick');
 	// const arrayLength = playerSequence.length - 1;
 	playerSequence.push(cellNum);
-if (
-	playerSequence[playerSequence.length - 1] !=
-	computerSequence[playerSequence.length - 1]
-){
-
-	gameOver()
-	playButton.innerText = "Play again?"
-	return;
-}
+	if (
+		playerSequence[playerSequence.length - 1] !=
+		computerSequence[playerSequence.length - 1]
+	) {
+		gameOver();
+		playButton.innerText = 'Play again?';
+		return;
+	}
 	if (playerSequence.length == computerSequence.length) {
 		// reset player sequence for next round
 		playerSequence = [];
 		console.log('win round');
-		message.innerText = "Winner, Next round!"
-		
+		message.innerText = 'Winner, Next round!';
+
 		setTimeout(() => {
 			message.innerText = 'Watch the sequence!';
 			turnController();
 		}, 1300);
 		return;
 	}
-	
 }
 //////// Event listener for clicks
 cells.forEach((cell) => {
 	cell.addEventListener('click', (event) => {
 		console.log('clicked');
 		playerClick(cell.getAttribute('data-number'));
-		theID = cell.getAttribute('id')
-		document.getElementById(theID).classList.add('glow')
+		theID = cell.getAttribute('id');
+		document.getElementById(theID).classList.add('glow');
 		setTimeout(() => {
-		document.getElementById(theID).classList.remove('glow');
-	},  400); 
-
+			document.getElementById(theID).classList.remove('glow');
+		}, 400);
 	});
 });
 ///// creates a new number
@@ -196,20 +187,23 @@ function generateNumber() {
 // removes clicking of boxes
 function removeClick() {
 	console.log('removeclick');
-	cell1.classList.add('removeClick');
-	cell2.classList.add('removeClick');
-	cell3.classList.add('removeClick');
-	cell4.classList.add('removeClick');
+
+	let allCells = document.getElementsByClassName('cell');
+	//console.log("allCells.length=" + allCells.length);
+	for (let i = 0; i < allCells.length; i++) {
+		cells[i].classList.add('removeClick');
+	}
+
 	// console.log(cell4.classList);
 }
 // allows clicking of boxes
 function addClick() {
 	console.log('addclick');
-	cell1.classList.remove('removeClick');
-	cell2.classList.remove('removeClick');
-	cell3.classList.remove('removeClick');
-	cell4.classList.remove('removeClick');
-	// console.log(cell4.classList);
+	let allCells = document.getElementsByClassName('cell');
+	//console.log("allCells.length=" + allCells.length);
+	for (let i = 0; i < allCells.length; i++) {
+		cells[i].classList.remove('removeClick');
+	}
 }
 
 // console.log(playButton);
