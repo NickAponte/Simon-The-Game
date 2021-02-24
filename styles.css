@@ -66,12 +66,9 @@ main {
   border-width: 8px;
 }
 #score{
-	border-radius: none;
-	display: flex;
-	justify-content: center;
 	width: 50px;
 	height: 50px;
-    /* background-color:rgba(82, 48, 204, 0.61); */
+    
     color: white;
     margin-left: -50px;
 }
