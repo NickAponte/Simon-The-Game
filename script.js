@@ -21,7 +21,7 @@ function populateLeaderboard() {
 			return localStorage.getItem(b) - localStorage.getItem(a); 
 		})
 		.forEach((key, index) => {
-			console.log(key, localStorage.getItem(key)); // 
+			
 			document.getElementById('leaderBoardDiv').innerHTML +=
 				'<li>' + key + ': ' + localStorage.getItem(key) + '</li>';
 		});
@@ -35,9 +35,9 @@ playButton.addEventListener('click', gameStart);
 function gameStart() {
 	turn = 0;
 	document.getElementById('simon').style.display = 'none';
-	console.log('gamestart');
+	
 	playButton.classList.add('removeClick');
-	console.log('removed start button click');
+
 	message.classList.remove('red');
 	message.style.color = 'white';
 	turnController();
@@ -65,7 +65,7 @@ function turnController() {
 
 // takes sequence and flashes
 function flashSequence(sequence) {
-	console.log('starting flashsequence');
+	
 
 	let index = 0;
 	const flashBox = setInterval(() => {
@@ -77,7 +77,7 @@ function flashSequence(sequence) {
 	}, 1000);
 }
 function flash(boxNum) {
-	console.log('flash');
+	
 	let boxId = 'circle_' + boxNum;
 	const beep = document.querySelector(`[data-sound='${boxId}']`);
 	beep.play();
@@ -96,7 +96,7 @@ function gameOver() {
 	
 	computerSequence = [];
 	playerSequence = [];
-	console.log('Game over, play again');
+
 	theID = "lost"
 	
 	const sound = document.querySelector(`[data-sound='${theID}']`);
@@ -172,7 +172,6 @@ function playerClick(cellNum) {
 
 cells.forEach((cell) => {
 	cell.addEventListener('click', (event) => {
-		console.log('clicked');
 		playerClick(cell.getAttribute('data-number'));
 		theID = cell.getAttribute('id');
 		document.getElementById(theID).classList.add('glow');
@@ -189,8 +188,7 @@ cells.forEach((cell) => {
 ///////////////////////////
 
 function generateNumber() {
-	console.log('generatenum');
-
+	
 	return Math.floor(Math.random() * 4) + 1;
 }
 
@@ -200,21 +198,17 @@ function generateNumber() {
 ///////////////////////////////
 
 function removeClick() {
-	console.log('removeclick');
-
 	let allCells = document.getElementsByClassName('cell');
 	for (let i = 0; i < allCells.length; i++) {
 		cells[i].classList.add('removeClick');
 	}
-
-	
 }
 //////////////////////////////
 // allows clicking of boxes //
 //////////////////////////////
 
 function addClick() {
-	console.log('addclick');
+	
 	let allCells = document.getElementsByClassName('cell');
 	for (let i = 0; i < allCells.length; i++) {
 		cells[i].classList.remove('removeClick');
