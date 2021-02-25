@@ -34,6 +34,7 @@ After you lose, record your name to be added to your local Leaderboard, Challeng
 
 *or be like me, and hardcode yourself into the Leaderboards*
 
+*Try it on Mobile!*
 
 ## User Stories
 # ---------------------
